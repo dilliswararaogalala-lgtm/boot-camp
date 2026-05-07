@@ -1,42 +1,21 @@
 package com.bootcamp.tw.p2;
 import java.util.ArrayList;
 
-public class Probability {
-    private final Coin coin;
-    private final ArrayList<CoinType> results = new ArrayList<>();
+public class Probability <T> {
+    private  final ArrayList<T> events;
 
-    public Probability(Coin coin) {
-        this.coin = coin;
+    public Probability(ArrayList<T> events) {
+        this.events = events;
     }
 
-    public CoinType flipCoin() {
-        CoinType result = this.coin.flip();
-        results.add(result);
-        return result;
-    }
-
-    public double getTailProbability() {
+    public double getProbabilityOf(T currentType) {
         int count = 0;
-        for (CoinType type : results){
-            if (CoinType.TAIL.equals(type) ){
+
+        for (T type : events){
+            if (currentType.equals(type) ){
                 count += 1;
             }
         }
-        return (double) count / results.size();
-    }
-
-
-    public double getProbabilityOfNotGetting(CoinType type) {
-        return 1 - getTailProbability(type);
-    }
-
-    private double getTailProbability(CoinType coinType) {
-        int count = 0;
-        for (CoinType type : results){
-            if (coinType.equals(type) ){
-                count += 1;
-            }
-        }
-        return (double) count / results.size();
+        return (double) count / events.size();
     }
 }
