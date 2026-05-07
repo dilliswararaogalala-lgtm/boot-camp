@@ -1,4 +1,4 @@
-package com.task_1;
+package com.bootcamp.tw.p1;
 
 public class Task1 {
     public Task1() {
