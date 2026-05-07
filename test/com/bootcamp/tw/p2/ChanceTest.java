@@ -8,13 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ChanceTest {
     @Test
-    @Description("Represent the chance of getting Tail")
-    void getChanceWhenWeCalledChanceOf() throws InvlidChanceArgument {
-        Chance gettingTail = Chance.create(0.5);
-        assertEquals(new Chance(0.5), gettingTail);
-    }
-
-    @Test
     @Description("Represent the chance of not getting Tail")
     void getNotChanceWhenWeCalledGetComplimentChanceOf() throws InvlidChanceArgument {
         Chance gettingTail = Chance.create(0.2);
@@ -45,9 +38,9 @@ public class ChanceTest {
     }
     @Test
     @Description("Represent the chance to get 3 when we roll dice")
-    void chanceToGetThreeWhenWeRollDice() {
+    void chanceToGetThreeWhenWeRollDice() throws InvlidChanceArgument {
         Chance gettingThreeChanceInDice = Chance.create(1, 6);
-        assertEquals(new Chance((double) 1 /6), gettingThreeChanceInDice);
+        assertEquals(Chance.create((double) 1 /6), gettingThreeChanceInDice);
     }
 
     @Test

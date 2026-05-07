@@ -1,21 +1,26 @@
 package com.bootcamp.tw.p1.shapes;
 
+import com.bootcamp.tw.p1.InvalidRectangleInput;
+
 import java.util.Objects;
 
 public class Rectangle {
     private final double length;
     private final double width;
 
-    public Rectangle(double length, double width) {
+    private Rectangle(double length, double width) {
         this.length = length;
         this.width = width;
     }
 
-    public static Rectangle createRectangle(double length, double width) {
+    public static Rectangle createRectangle(double length, double width) throws InvalidRectangleInput {
+        if (length <= 0 || width <= 0){
+            throw new InvalidRectangleInput("Invalid length or width");
+        }
         return new Rectangle(length, width);
     }
 
-    public static Rectangle createSquare(double side) {
+    public static Rectangle createSquare(double side) throws InvalidRectangleInput {
         return Rectangle.createRectangle(side, side);
     }
 
