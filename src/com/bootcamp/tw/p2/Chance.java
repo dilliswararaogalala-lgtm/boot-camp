@@ -41,4 +41,11 @@ public class Chance {
     public Chance union(Chance chance2) {
         return Chance.create((this.chance + chance2.chance - this.intersection(chance2).chance));
     }
+
+    public Chance deMorganLaw(Chance chance2){
+        Chance notOfChance1 = this.not();
+        Chance notOfChance2 = chance2.not();
+
+        return Chance.create(notOfChance1.intersection(notOfChance2).chance).not();
+    }
 }

@@ -48,4 +48,15 @@ public class ChanceTest {
         Chance gettingThreeChanceInDice = Chance.create(1, 6);
         assertEquals(new Chance((double) 1 /6), gettingThreeChanceInDice);
     }
+
+    @Test
+    @Description("Represent the chance with demorgans law")
+    void demorgansTheroem() {
+        Chance gettingTailInCoin1 = Chance.create(0.5);
+        Chance gettingTailInCoin2 = Chance.create(0.5);
+
+        Chance gettingTailInAnyOne = gettingTailInCoin1.deMorganLaw(gettingTailInCoin2);
+
+        assertEquals(Chance.create(0.75), gettingTailInAnyOne);
+    }
 }
