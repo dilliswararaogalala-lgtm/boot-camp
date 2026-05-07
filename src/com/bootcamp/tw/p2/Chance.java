@@ -16,8 +16,8 @@ public class Chance {
         return new Chance(chance);
     }
 
-    public static Chance create(double chance, double max) {
-        return new Chance(chance / max);
+    public static Chance create(double chance, double max) throws InvlidChanceArgument {
+        return  Chance.create(chance / max);
     }
 
     public Chance compliment() throws InvlidChanceArgument {
@@ -28,7 +28,7 @@ public class Chance {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Chance chance1 = (Chance) o;
-        return Double.compare(chance, chance1.chance) == 0;
+         return Double.compare(chance, chance1.chance) == 0;
     }
 
     @Override
@@ -36,13 +36,12 @@ public class Chance {
         return Objects.hash(chance);
     }
 
-
     public Chance intersection(Chance chance2) throws InvlidChanceArgument {
         return Chance.create(this.chance * chance2.chance);
     }
 
     public Chance union(Chance chance2) throws InvlidChanceArgument {
-        return Chance.create((this.chance + chance2.chance - this.intersection(chance2).chance));
+        return Chance.create((this.chance + chance2.chance - this.chance * chance2.chance));
     }
 
     public Chance deMorganLaw(Chance chance2) throws InvlidChanceArgument {
