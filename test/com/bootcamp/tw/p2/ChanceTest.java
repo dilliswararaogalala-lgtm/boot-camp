@@ -4,18 +4,19 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ChanceTest {
     @Test
     @Description("Represent the chance of getting Tail")
-    void getChanceWhenWeCalledChanceOf() {
+    void getChanceWhenWeCalledChanceOf() throws InvlidChanceArgument {
         Chance gettingTail = Chance.create(0.5);
         assertEquals(new Chance(0.5), gettingTail);
     }
 
     @Test
     @Description("Represent the chance of not getting Tail")
-    void getNotChanceWhenWeCalledGetComplimentChanceOf() {
+    void getNotChanceWhenWeCalledGetComplimentChanceOf() throws InvlidChanceArgument {
         Chance gettingTail = Chance.create(0.2);
         Chance notGettingChance = gettingTail.compliment();
         assertEquals( Chance.create(0.8), notGettingChance);
@@ -23,7 +24,7 @@ public class ChanceTest {
 
     @Test
     @Description("Represent the chance of getting Tail in both coin when we flip 2 coins")
-    void chanceToComplimentGetTailWhenWeFlippedTwoCoins() {
+    void chanceToComplimentGetTailWhenWeFlippedTwoCoins() throws InvlidChanceArgument {
         Chance gettingTailInCoin1 = Chance.create(0.5);
         Chance gettingTailInCoin2 = Chance.create(0.5);
 
@@ -34,7 +35,7 @@ public class ChanceTest {
 
     @Test
     @Description("Represent the chance of at least one Tail when we flip 2 coins")
-    void chanceOfGettingTailOnBothCoins() {
+    void chanceOfGettingTailOnBothCoins() throws InvlidChanceArgument {
         Chance gettingTailInCoin1 = Chance.create(0.5);
         Chance gettingTailInCoin2 = Chance.create(0.5);
 
@@ -50,13 +51,20 @@ public class ChanceTest {
     }
 
     @Test
-    @Description("Represent the chance with demorgans law")
-    void demorgansTheroem() {
+    @Description("Represent the chance with deMorgans law")
+    void deMorgansTheorem() throws InvlidChanceArgument {
         Chance gettingTailInCoin1 = Chance.create(0.5);
         Chance gettingTailInCoin2 = Chance.create(0.5);
 
         Chance gettingTailInAnyOne = gettingTailInCoin1.deMorganLaw(gettingTailInCoin2);
 
         assertEquals(Chance.create(0.75), gettingTailInAnyOne);
+    }
+
+    @Test
+    @Description("should throw on invalid chance")
+    void shouldThrowOnInvalidChance() {
+        assertThrows(InvlidChanceArgument.class, ()->Chance.create(2));
+        assertThrows(InvlidChanceArgument.class, ()->Chance.create(-1));
     }
 }

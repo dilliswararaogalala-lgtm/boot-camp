@@ -9,7 +9,10 @@ public class Chance {
         this.chance = chance;
     }
 
-    public static Chance create(double chance) {
+    public static Chance create(double chance) throws InvlidChanceArgument {
+        if (chance > 1.0 || chance < 0.0) {
+            throw new InvlidChanceArgument("Invalid Chance Argument");
+        }
         return new Chance(chance);
     }
 
@@ -17,7 +20,7 @@ public class Chance {
         return new Chance(chance / max);
     }
 
-    public Chance compliment() {
+    public Chance compliment() throws InvlidChanceArgument {
         return Chance.create(1 - this.chance);
     }
 
@@ -34,15 +37,15 @@ public class Chance {
     }
 
 
-    public Chance intersection(Chance chance2) {
+    public Chance intersection(Chance chance2) throws InvlidChanceArgument {
         return Chance.create(this.chance * chance2.chance);
     }
 
-    public Chance union(Chance chance2) {
+    public Chance union(Chance chance2) throws InvlidChanceArgument {
         return Chance.create((this.chance + chance2.chance - this.intersection(chance2).chance));
     }
 
-    public Chance deMorganLaw(Chance chance2){
+    public Chance deMorganLaw(Chance chance2) throws InvlidChanceArgument {
         Chance notOfChance1 = this.compliment();
         Chance notOfChance2 = chance2.compliment();
 
