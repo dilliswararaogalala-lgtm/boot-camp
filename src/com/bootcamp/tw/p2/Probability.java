@@ -18,4 +18,8 @@ public class Probability <T> {
         }
         return (double) count / events.size();
     }
+
+    public double getProbabilityOfNotGetting(T currentType) {
+        return 1 - getProbabilityOf(currentType);
+    }
 }

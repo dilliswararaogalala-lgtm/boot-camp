@@ -20,5 +20,16 @@ public class FlipTest {
         assertEquals(1, probability.getProbabilityOf(CoinType.TAIL));
     }
 
+    @Test
+    @Description("user should able to flip a coin and get the probability of getting tail")
+    public void flipAndGettingResultOfNotGettingTail() {
+
+        ArrayList<CoinType> coinSides = new ArrayList<>();
+        coinSides.add(CoinType.TAIL);
+
+        Probability<CoinType> probability = new Probability<>(coinSides);
+
+        assertEquals(0, probability.getProbabilityOfNotGetting(CoinType.TAIL));
+    }
 
 }
