@@ -20,4 +20,20 @@ class Task1Test {
         double area = rectangle.calculateArea();
         assertEquals(138.02, area, 1e-4);
     }
+
+    @Test
+    void calculatePerimeter() {
+        Rectangle rectangle = new Rectangle(12, 24);
+        double perimeter = rectangle.calculatePerimeter();
+        assertEquals(72, perimeter);
+    }
+
+    @Test
+    void calculatePerimeterWithDecimalValues() {
+        Rectangle rectangle = new Rectangle(12.5, 24.5);
+        double perimeter = rectangle.calculatePerimeter();
+        assertEquals(74, perimeter);
+    }
+
+
 }
