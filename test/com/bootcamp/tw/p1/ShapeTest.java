@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Task1Test {
+class ShapeTest {
 
     @Nested
     @Description("RECTANGLE")
