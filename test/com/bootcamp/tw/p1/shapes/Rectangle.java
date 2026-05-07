@@ -2,7 +2,7 @@ package com.bootcamp.tw.p1.shapes;
 
 import java.util.Objects;
 
-public class Rectangle {
+public class Rectangle implements Shape {
     private final double length;
     private final double width;
 
@@ -15,10 +15,12 @@ public class Rectangle {
         return new Rectangle(length, width);
     }
 
+    @Override
     public double calculateArea() {
         return length * width;
     }
 
+    @Override
     public double calculatePerimeter() {
         return 2 * (length + width);
     }
