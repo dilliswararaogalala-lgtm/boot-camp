@@ -17,7 +17,7 @@ public class Chance {
         return new Chance(chance / max);
     }
 
-    public Chance not() {
+    public Chance compliment() {
         return Chance.create(1 - this.chance);
     }
 
@@ -43,9 +43,9 @@ public class Chance {
     }
 
     public Chance deMorganLaw(Chance chance2){
-        Chance notOfChance1 = this.not();
-        Chance notOfChance2 = chance2.not();
+        Chance notOfChance1 = this.compliment();
+        Chance notOfChance2 = chance2.compliment();
 
-        return Chance.create(notOfChance1.intersection(notOfChance2).chance).not();
+        return Chance.create(notOfChance1.intersection(notOfChance2).chance).compliment();
     }
 }

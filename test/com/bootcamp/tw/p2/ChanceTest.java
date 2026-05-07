@@ -15,15 +15,15 @@ public class ChanceTest {
 
     @Test
     @Description("Represent the chance of not getting Tail")
-    void getNotChanceWhenWeCalledGetNotChanceOf() {
+    void getNotChanceWhenWeCalledGetComplimentChanceOf() {
         Chance gettingTail = Chance.create(0.2);
-        Chance notGettingChance = gettingTail.not();
+        Chance notGettingChance = gettingTail.compliment();
         assertEquals( Chance.create(0.8), notGettingChance);
     }
 
     @Test
     @Description("Represent the chance of getting Tail in both coin when we flip 2 coins")
-    void chanceToNotGetTailWhenWeFlippedTwoCoins() {
+    void chanceToComplimentGetTailWhenWeFlippedTwoCoins() {
         Chance gettingTailInCoin1 = Chance.create(0.5);
         Chance gettingTailInCoin2 = Chance.create(0.5);
 
