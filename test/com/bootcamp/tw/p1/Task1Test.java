@@ -35,5 +35,11 @@ class Task1Test {
         assertEquals(74, perimeter);
     }
 
+    @Test
+    void createRectangle() {
+        Rectangle rectangle = Rectangle.create(12.2, 12.2);
+        Rectangle expectedRectangle = new Rectangle(12.2, 12.2);
+        assertEquals(expectedRectangle, rectangle);
+    }
 
 }
