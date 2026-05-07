@@ -82,6 +82,14 @@ class Task1Test {
         }
 
         @Test
+        @Description("Square provides static method to create a square")
+        void createSquare() {
+            Square square = Square.create(12.2);
+            Square expectedRectangle = new Square(12.2);
+            assertEquals(expectedRectangle, square);
+        }
+
+        @Test
         @Description("Calculate the perimeter of floating number size dimension")
         void calculatePerimeterWithDecimalValues() {
             Square square = new Square(10.5);

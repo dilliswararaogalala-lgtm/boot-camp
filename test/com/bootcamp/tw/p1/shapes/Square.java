@@ -9,6 +9,10 @@ public class Square implements Shape {
         this.side = side;
     }
 
+    public static Square create(double side) {
+        return new Square(side);
+    }
+
     @Override
     public double calculateArea() {
         return side * side;
