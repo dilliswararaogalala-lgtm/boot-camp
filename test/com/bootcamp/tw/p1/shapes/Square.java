@@ -11,4 +11,9 @@ public class Square {
     public double calculateArea() {
         return side * side;
     }
+
+    public double calculatePerimeter() {
+        return side * 4;
+
+    }
 }

@@ -73,5 +73,20 @@ class Task1Test {
             assertEquals(2.25, area, 1e-4);
         }
 
+        @Test
+        @Description("Calculate the perimeter of floating number size dimension")
+        void calculatePerimeterWithIntegerValues() {
+            Square square = new Square(10);
+            double perimeter = square.calculatePerimeter();
+            assertEquals(40, perimeter);
+        }
+
+        @Test
+        @Description("Calculate the perimeter of floating number size dimension")
+        void calculatePerimeterWithDecimalValues() {
+            Square square = new Square(10.5);
+            double perimeter = square.calculatePerimeter();
+            assertEquals(42, perimeter);
+        }
     }
 }
