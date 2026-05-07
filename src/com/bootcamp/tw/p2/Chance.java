@@ -45,4 +45,14 @@ public class Chance {
     public int hashCode() {
         return Objects.hash(chance, min, max);
     }
+
+    public Chance intersection(Chance chance2) {
+        return Chance.create(this.chance * chance2.chance, min, max);
+    }
+
+    public Chance union(Chance chance2) {
+        Chance notOfChance1 = this.not();
+        Chance notOfChance2 = chance2.not();
+        return Chance.create(notOfChance1.chance * notOfChance2.chance, min, max).not();
+    }
 }

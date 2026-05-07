@@ -31,9 +31,12 @@ public class ChanceTest {
     @Test
     @Description("Represent the chance of not getting Tail when we flip 2 coins")
     void chanceToNotGetTailWhenWeFlippedTwoCoins() {
-        Chance gettingTail = Chance.create(0.25);
-        Chance notGettingChance = gettingTail.not();
-        assertEquals(0.75, notGettingChance.getChance());
+        Chance gettingTailInCoin1 = Chance.create(0.5);
+        Chance gettingTailInCoin2 = Chance.create(0.5);
+
+        Chance gettingTailInBothChance = gettingTailInCoin1.intersection(gettingTailInCoin2);
+
+        assertEquals(Chance.create(0.25), gettingTailInBothChance);
     }
 
     @Test
@@ -43,7 +46,16 @@ public class ChanceTest {
         assertEquals(new Chance(1, 0, 6), gettingThreeChanceInDice);
     }
 
-    
+    @Test
+    @Description("Represent the chance of not getting Tail when we flip 2 coins")
+    void chanceOfGettingTailOnBothCoins() {
+        Chance gettingTailInCoin1 = Chance.create(0.5);
+        Chance gettingTailInCoin2 = Chance.create(0.5);
+
+        Chance gettingTailInAnyOne = gettingTailInCoin1.union(gettingTailInCoin2);
+
+        assertEquals(Chance.create(0.75), gettingTailInAnyOne);
+    }
 
 
 }
