@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CompareTest {
+public class CompareLengthTest {
     @Test
     void compareInchAndInch() throws InvalidUnitValue {
         Length twelveInches = Length.createInch(12);
