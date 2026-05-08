@@ -7,23 +7,23 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CompareTest {
     @Test
     void compareInchAndInch() throws InvalidUnitValue {
-        Length inch = Length.createInch(12);
-        Length inch2 = Length.createInch(12);
-        assertTrue(inch.compare(inch2));
+        Length twelveInches = Length.createInch(12);
+        Length TwelveInches2 = Length.createInch(12);
+        assertTrue(twelveInches.compare(TwelveInches2));
     }
 
     @Test
     void compareNotEqualInchAndInch() throws InvalidUnitValue {
-        Length inch = Length.createInch(12);
-        Length inch2 = Length.createInch(11);
-        assertFalse(inch.compare(inch2));
+        Length twelveInches = Length.createInch(12);
+        Length ElevenInches = Length.createInch(11);
+        assertFalse(twelveInches.compare(ElevenInches));
     }
 
     @Test
     void compareFeetAndFeet() throws InvalidUnitValue {
-        Length feet = Length.createFeet(12);
-        Length feet2 = Length.createFeet(12);
-        assertTrue(feet.compare(feet2));
+        Length twelveFeet = Length.createFeet(12);
+        Length twelveFeet2 = Length.createFeet(12);
+        assertTrue(twelveFeet.compare(twelveFeet2));
     }
 
     @Test
@@ -73,6 +73,19 @@ public class CompareTest {
     @Test
     void negativeValueShouldThrowException() {
         assertThrows(InvalidUnitValue.class,()->Length.createCm(-1));
+    }
 
+    @Test
+    void compareCmAndMm() throws InvalidUnitValue {
+        Length fiveCentimeters = Length.createCm(1);
+        Length tenMilliMeter = Length.createMm(10);
+        assertTrue(tenMilliMeter.compare(fiveCentimeters));
+    }
+
+    @Test
+    void compareNotEqualCmAndMm() throws InvalidUnitValue {
+        Length fiveCentimeters = Length.createCm(6);
+        Length tenMilliMeter = Length.createMm(10);
+        assertFalse(tenMilliMeter.compare(fiveCentimeters));
     }
 }

@@ -1,8 +1,5 @@
 package com.bootcamp.tw.p3;
-
 import java.util.Objects;
-
-import static com.bootcamp.tw.p3.Unit.*;
 
 public class Length {
     private final Double unitValue;
@@ -21,15 +18,19 @@ public class Length {
     }
 
     public static Length createFeet(double value) throws InvalidUnitValue {
-        return createLength(value, FEET);
+        return createLength(value, Unit.FEET);
     }
 
     public static Length createInch(double value) throws InvalidUnitValue {
-        return createLength(value, INCH);
+        return createLength(value, Unit.INCH);
     }
 
     public static Length createCm(double value) throws InvalidUnitValue {
-        return createLength(value, CM);
+        return createLength(value, Unit.CM);
+    }
+
+    public static Length createMm(double value) throws InvalidUnitValue {
+        return createLength(value, Unit.MM);
     }
 
 
