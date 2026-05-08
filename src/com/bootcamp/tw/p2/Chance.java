@@ -9,18 +9,18 @@ public class Chance {
         this.chance = chance;
     }
 
-    public static Chance create(double chance) throws InvlidChanceArgument {
+    public static Chance create(double chance) throws InvalidChanceArgument {
         if (chance > 1.0 || chance < 0.0) {
-            throw new InvlidChanceArgument("Invalid Chance Argument");
+            throw new InvalidChanceArgument("Invalid Chance Argument");
         }
         return new Chance(chance);
     }
 
-    public static Chance create(double chance, double max) throws InvlidChanceArgument {
+    public static Chance create(double chance, double max) throws InvalidChanceArgument {
         return  Chance.create(chance / max);
     }
 
-    public Chance compliment() throws InvlidChanceArgument {
+    public Chance compliment() throws InvalidChanceArgument {
         return Chance.create(1 - this.chance);
     }
 
@@ -36,15 +36,15 @@ public class Chance {
         return Objects.hash(chance);
     }
 
-    public Chance intersection(Chance chance2) throws InvlidChanceArgument {
+    public Chance intersection(Chance chance2) throws InvalidChanceArgument {
         return Chance.create(this.chance * chance2.chance);
     }
 
-    public Chance union(Chance chance2) throws InvlidChanceArgument {
+    public Chance union(Chance chance2) throws InvalidChanceArgument {
         return Chance.create((this.chance + chance2.chance - this.chance * chance2.chance));
     }
 
-    public Chance deMorganLaw(Chance chance2) throws InvlidChanceArgument {
+    public Chance deMorganLaw(Chance chance2) throws InvalidChanceArgument {
         Chance notOfChance1 = this.compliment();
         Chance notOfChance2 = chance2.compliment();
 

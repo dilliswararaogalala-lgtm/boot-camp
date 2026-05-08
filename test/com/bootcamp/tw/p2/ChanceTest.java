@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ChanceTest {
     @Test
     @Description("Represent the chance of not getting Tail")
-    void getNotChanceWhenWeCalledGetComplimentChanceOf() throws InvlidChanceArgument {
+    void getNotChanceWhenWeCalledGetComplimentChanceOf() throws InvalidChanceArgument {
         Chance gettingTail = Chance.create(0.2);
         Chance notGettingChance = gettingTail.compliment();
         assertEquals( Chance.create(0.8), notGettingChance);
@@ -17,7 +17,7 @@ public class ChanceTest {
 
     @Test
     @Description("Represent the chance of getting Tail in both coin when we flip 2 coins")
-    void chanceToComplimentGetTailWhenWeFlippedTwoCoins() throws InvlidChanceArgument {
+    void chanceToComplimentGetTailWhenWeFlippedTwoCoins() throws InvalidChanceArgument {
         Chance gettingTailInCoin1 = Chance.create(0.5);
         Chance gettingTailInCoin2 = Chance.create(0.5);
 
@@ -28,7 +28,7 @@ public class ChanceTest {
 
     @Test
     @Description("Represent the chance of at least one Tail when we flip 2 coins")
-    void chanceOfGettingTailOnBothCoins() throws InvlidChanceArgument {
+    void chanceOfGettingTailOnBothCoins() throws InvalidChanceArgument {
         Chance gettingTailInCoin1 = Chance.create(0.5);
         Chance gettingTailInCoin2 = Chance.create(0.5);
 
@@ -38,14 +38,14 @@ public class ChanceTest {
     }
     @Test
     @Description("Represent the chance to get 3 when we roll dice")
-    void chanceToGetThreeWhenWeRollDice() throws InvlidChanceArgument {
+    void chanceToGetThreeWhenWeRollDice() throws InvalidChanceArgument {
         Chance gettingThreeChanceInDice = Chance.create(1, 6);
         assertEquals(Chance.create((double) 1 /6), gettingThreeChanceInDice);
     }
 
     @Test
     @Description("Represent the chance with deMorgans law")
-    void deMorgansTheorem() throws InvlidChanceArgument {
+    void deMorgansTheorem() throws InvalidChanceArgument {
         Chance gettingTailInCoin1 = Chance.create(0.5);
         Chance gettingTailInCoin2 = Chance.create(0.5);
 
@@ -57,7 +57,7 @@ public class ChanceTest {
     @Test
     @Description("should throw on invalid chance")
     void shouldThrowOnInvalidChance() {
-        assertThrows(InvlidChanceArgument.class, ()->Chance.create(2));
-        assertThrows(InvlidChanceArgument.class, ()->Chance.create(-1));
+        assertThrows(InvalidChanceArgument.class, ()->Chance.create(2));
+        assertThrows(InvalidChanceArgument.class, ()->Chance.create(-1));
     }
 }
