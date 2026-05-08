@@ -2,6 +2,9 @@ package com.bootcamp.tw.p3;
 
 import java.util.Objects;
 
+import static com.bootcamp.tw.p3.Unit.*;
+import static com.bootcamp.tw.p3.Unit.FEET;
+
 public class Length {
     private final Double unitValue;
     private final Unit unit;
@@ -11,34 +14,32 @@ public class Length {
         this.unit = unit;
     }
 
-  
-    public static Length createFeet(double value ) {
-        return new Length(value, Unit.FEET);
+
+    public static Length createFeet(double value) {
+        return new Length(value, FEET);
     }
 
-    public static Length createInch(double value ) {
-        return new Length(value, Unit.INCH);
+    public static Length createInch(double value) {
+        return new Length(value, INCH);
     }
 
-    public static Length createCm(double value){
-        return new Length(value, Unit.CM);
+    public static Length createCm(double value) {
+        return new Length(value, CM);
     }
 
 
-    boolean compare(Length a){
-        if (a.unit.equals(this.unit)){
+    boolean compare(Length a) {
+        if (a.unit.equals(this.unit)) {
             return this.equals(a);
         }
 
-        return this.toInch() == a.toInch();
+        double unitInInch = this.toInch();
+        double comparatorUnitsInch = a.toInch();
+        return unitInInch == comparatorUnitsInch;
     }
 
     private double toInch() {
-        return switch(unit){
-            case Unit.FEET -> unitValue * 12;
-            case CM -> unitValue * 0.4;
-            case Unit.INCH -> unitValue;
-        };
+        return this.unit.ratioToInch * this.unitValue;
     }
 
 
