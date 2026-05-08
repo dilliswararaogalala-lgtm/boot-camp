@@ -3,7 +3,6 @@ package com.bootcamp.tw.p3;
 import java.util.Objects;
 
 import static com.bootcamp.tw.p3.Unit.*;
-import static com.bootcamp.tw.p3.Unit.FEET;
 
 public class Length {
     private final Double unitValue;
@@ -14,17 +13,23 @@ public class Length {
         this.unit = unit;
     }
 
-
-    public static Length createFeet(double value) {
-        return new Length(value, FEET);
+    private static Length createLength(Double unitValue, Unit unit) throws InvalidUnitValue {
+        if(unitValue < 0) {
+            throw  new InvalidUnitValue("Negative length Not allowed");
+        }
+        return new Length(unitValue, unit);
     }
 
-    public static Length createInch(double value) {
-        return new Length(value, INCH);
+    public static Length createFeet(double value) throws InvalidUnitValue {
+        return createLength(value, FEET);
     }
 
-    public static Length createCm(double value) {
-        return new Length(value, CM);
+    public static Length createInch(double value) throws InvalidUnitValue {
+        return createLength(value, INCH);
+    }
+
+    public static Length createCm(double value) throws InvalidUnitValue {
+        return createLength(value, CM);
     }
 
 
