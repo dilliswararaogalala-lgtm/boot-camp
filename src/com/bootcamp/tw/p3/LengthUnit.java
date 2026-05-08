@@ -15,4 +15,8 @@ public enum LengthUnit {
     public double toStandard(double value){
         return value * this.ratioToStandard;
     }
+
+    public Double fromStandard(Double unitValue) {
+        return unitValue / this.ratioToStandard;
+    }
 }

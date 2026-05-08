@@ -33,5 +33,11 @@ public class Length {
     public Length add(Length tenInches) throws InvalidUnitValue {
         return create(tenInches.unitValue + this.unitValue, LengthUnit.STANDARD);
     }
+
+
+    @Override
+    public String toString() {
+        return LengthUnit.INCH.fromStandard(this.unitValue)+" in" ;
+    }
 }
 
