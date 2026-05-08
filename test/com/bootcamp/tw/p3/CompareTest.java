@@ -40,4 +40,18 @@ public class CompareTest {
         Length feet2 = Length.createFeet(1);
         assertTrue(feet.compare(feet2));
     }
+    @Test
+    void compareFeetAndCm() {
+        Length cm = Length.createCm(30);
+        Length feet = Length.createFeet(1);
+        assertTrue(feet.compare(cm));
+    }
+
+
+    @Test
+    void compareInchAndCm() {
+        Length cm = Length.createCm(5);
+        Length inch = Length.createInch(2);
+        assertTrue(inch.compare(cm));
+    }
 }

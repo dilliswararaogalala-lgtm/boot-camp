@@ -20,6 +20,10 @@ public class Length {
         return new Length(value, Unit.INCH);
     }
 
+    public static Length createCm(double value){
+        return new Length(value, Unit.CM);
+    }
+
 
     boolean compare(Length a){
         if (a.unit.equals(this.unit)){
@@ -32,6 +36,7 @@ public class Length {
     private double toInch() {
         return switch(unit){
             case Unit.FEET -> unitValue * 12;
+            case CM -> unitValue * 0.4;
             case Unit.INCH -> unitValue;
         };
     }
