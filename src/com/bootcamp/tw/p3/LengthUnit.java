@@ -1,6 +1,6 @@
 package com.bootcamp.tw.p3;
 
-public enum Unit {
+public enum LengthUnit {
     FEET(12),
     CM(0.4),
     INCH(1),
@@ -8,7 +8,7 @@ public enum Unit {
 
     public final double ratioToInch;
 
-    Unit(double ratioToInch) {
+    LengthUnit(double ratioToInch) {
         this.ratioToInch = ratioToInch;
     }
 }

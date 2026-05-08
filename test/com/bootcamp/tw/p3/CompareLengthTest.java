@@ -7,85 +7,84 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CompareLengthTest {
     @Test
     void compareInchAndInch() throws InvalidUnitValue {
-        Length twelveInches = Length.createInch(12);
-        Length TwelveInches2 = Length.createInch(12);
-        assertTrue(twelveInches.compare(TwelveInches2));
+        Length twelveInches = Length.create(12.0, LengthUnit.INCH);
+        Length TwelveInches2 = Length.create(12.0, LengthUnit.INCH);
+        assertEquals(twelveInches, (TwelveInches2));
     }
 
     @Test
     void compareNotEqualInchAndInch() throws InvalidUnitValue {
-        Length twelveInches = Length.createInch(12);
-        Length ElevenInches = Length.createInch(11);
-        assertFalse(twelveInches.compare(ElevenInches));
+        Length twelveInches = Length.create(12.0, LengthUnit.INCH);
+        Length ElevenInches = Length.create(11.0, LengthUnit.INCH);
+         assertNotEquals(twelveInches, (ElevenInches));
     }
 
     @Test
     void compareFeetAndFeet() throws InvalidUnitValue {
-        Length twelveFeet = Length.createFeet(12);
-        Length twelveFeet2 = Length.createFeet(12);
-        assertTrue(twelveFeet.compare(twelveFeet2));
+        Length twelveFeet = Length.create(12.0, LengthUnit.FEET);
+        Length twelveFeet2 = Length.create(12.0, LengthUnit.FEET);
+        assertEquals(twelveFeet, (twelveFeet2));
     }
 
     @Test
     void compareNotEqualFeetAndFeet() throws InvalidUnitValue {
-        Length feet = Length.createFeet(12);
-        Length feet2 = Length.createFeet(1);
-        assertFalse(feet.compare(feet2));
+        Length feet = Length.create(12.0, LengthUnit.FEET);
+        Length feet2 = Length.create(1.0, LengthUnit.FEET);
+        assertNotEquals(feet, (feet2));
     }
 
     @Test
     void compareFeetAndInch() throws InvalidUnitValue {
-        Length feet = Length.createInch(12);
-        Length feet2 = Length.createFeet(1);
-        assertTrue(feet.compare(feet2));
+        Length feet = Length.create(12.0, LengthUnit.INCH);
+        Length feet2 = Length.create(1.0, LengthUnit.FEET);
+        assertEquals(feet, (feet2));
     }
 
     @Test
     void compareNotEqualFeetAndInch() throws InvalidUnitValue {
-        Length feet = Length.createInch(12);
-        Length feet2 = Length.createFeet(2);
-        assertFalse(feet.compare(feet2));
+        Length feet = Length.create(12.0, LengthUnit.INCH);
+        Length feet2 = Length.create(2.0, LengthUnit.FEET);
+        assertNotEquals(feet, (feet2));
     }
 
     @Test
     void compareFeetAndCm() throws InvalidUnitValue {
-        Length cm = Length.createCm(30);
-        Length feet = Length.createFeet(1);
-        assertTrue(feet.compare(cm));
+        Length cm = Length.create(30.0, LengthUnit.CM);
+        Length feet = Length.create(1.0, LengthUnit.FEET);
+        assertEquals(feet, (cm));
     }
 
     @Test
     void compareNotEqualFeetAndCm() throws InvalidUnitValue {
-        Length cm = Length.createCm(30);
-        Length feet = Length.createFeet(2);
-        assertFalse(feet.compare(cm));
+        Length cm = Length.create(30.0, LengthUnit.CM);
+        Length feet = Length.create(2.0, LengthUnit.FEET);
+        assertNotEquals(feet, (cm));
     }
 
 
     @Test
     void compareNotEqualInchAndCm() throws InvalidUnitValue {
-        Length cm = Length.createCm(5);
-        Length inch = Length.createInch(3);
-        assertFalse(inch.compare(cm));
+        Length cm = Length.create(5.0, LengthUnit.CM);
+        Length inch = Length.create(3.0, LengthUnit.INCH);
+        assertNotEquals(inch, (cm));
     }
-
 
     @Test
     void negativeValueShouldThrowException() {
-        assertThrows(InvalidUnitValue.class,()->Length.createCm(-1));
+        assertThrows(InvalidUnitValue.class,()->Length.create(-1.0, LengthUnit.CM));
     }
 
     @Test
     void compareCmAndMm() throws InvalidUnitValue {
-        Length fiveCentimeters = Length.createCm(1);
-        Length tenMilliMeter = Length.createMm(10);
-        assertTrue(tenMilliMeter.compare(fiveCentimeters));
+        Length fiveCentimeters = Length.create(1.0, LengthUnit.CM);
+        Length tenMilliMeter = Length.create(10.0, LengthUnit.MM);
+        assertEquals(tenMilliMeter, (fiveCentimeters));
     }
 
     @Test
     void compareNotEqualCmAndMm() throws InvalidUnitValue {
-        Length fiveCentimeters = Length.createCm(6);
-        Length tenMilliMeter = Length.createMm(10);
-        assertFalse(tenMilliMeter.compare(fiveCentimeters));
+        Length fiveCentimeters = Length.create(6.0, LengthUnit.CM);
+        Length tenMilliMeter = Length.create(10.0, LengthUnit.MM);
+        assertNotEquals(tenMilliMeter, (fiveCentimeters));
     }
 }

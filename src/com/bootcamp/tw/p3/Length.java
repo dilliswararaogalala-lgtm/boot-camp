@@ -8,34 +8,15 @@ public class Length {
         this.unitValue = unitValueInInch;
     }
 
-    private static Length createLength(Double unitValue, Unit unit) throws InvalidUnitValue {
+    static Length create(Double unitValue, LengthUnit lengthUnit) throws InvalidUnitValue {
         if(unitValue < 0) {
             throw  new InvalidUnitValue("Negative length Not allowed");
         }
 
-        double unitValueInInch = unitValue * unit.ratioToInch;
+        double unitValueInInch = unitValue * lengthUnit.ratioToInch;
         return new Length(unitValueInInch);
     }
 
-    public static Length createFeet(double value) throws InvalidUnitValue {
-        return createLength(value, Unit.FEET);
-    }
-
-    public static Length createInch(double value) throws InvalidUnitValue {
-        return createLength(value, Unit.INCH);
-    }
-
-    public static Length createCm(double value) throws InvalidUnitValue {
-        return createLength(value, Unit.CM);
-    }
-
-    public static Length createMm(double value) throws InvalidUnitValue {
-        return createLength(value, Unit.MM);
-    }
-
-    boolean compare(Object a) {
-       return this.equals(a);
-    }
 
     @Override
     public boolean equals(Object o) {
