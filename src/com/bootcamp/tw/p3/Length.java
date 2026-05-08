@@ -13,7 +13,7 @@ public class Length {
             throw  new InvalidUnitValue("Negative length Not allowed");
         }
 
-        double unitValueInInch = unitValue * lengthUnit.ratioToInch;
+        double unitValueInInch = lengthUnit.toStandard(unitValue);
         return new Length(unitValueInInch);
     }
 
@@ -28,6 +28,10 @@ public class Length {
     @Override
     public int hashCode() {
         return Objects.hash(unitValue);
+    }
+
+    public Length add(Length tenInches) throws InvalidUnitValue {
+        return create(tenInches.unitValue + this.unitValue, LengthUnit.STANDARD);
     }
 }
 

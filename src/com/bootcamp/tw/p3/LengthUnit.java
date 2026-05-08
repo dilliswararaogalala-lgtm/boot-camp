@@ -4,11 +4,15 @@ public enum LengthUnit {
     FEET(12),
     CM(0.4),
     INCH(1),
-    MM(0.04);
+    MM(0.04),
+    STANDARD(1);
 
-    public final double ratioToInch;
+    private final double ratioToStandard;
 
-    LengthUnit(double ratioToInch) {
-        this.ratioToInch = ratioToInch;
+    LengthUnit(double ratioToStandard) {
+        this.ratioToStandard = ratioToStandard;
+    }
+    public double toStandard(double value){
+        return value * this.ratioToStandard;
     }
 }

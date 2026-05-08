@@ -87,4 +87,12 @@ public class CompareLengthTest {
         Length tenMilliMeter = Length.create(10.0, LengthUnit.MM);
         assertNotEquals(tenMilliMeter, (fiveCentimeters));
     }
+    @Test
+    void addTwoUnitsOfLength() throws InvalidUnitValue {
+        Length sixInches = Length.create(6.0, LengthUnit.INCH);
+        Length tenInches = Length.create(10.0, LengthUnit.INCH);
+        Length sixteenInches = sixInches.add(tenInches);
+        assertEquals(Length.create(16.0, LengthUnit.INCH), sixteenInches);
+    }
+
 }

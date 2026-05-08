@@ -12,10 +12,10 @@ public class Volume {
 
     public static Volume create(double unitValue, VolumeUnit volumeUnit) throws InvalidUnitValue {
         if (unitValue < 0 ){
-            throw new InvalidUnitValue("Invalid Voulmn "+ unitValue);
+            throw new InvalidUnitValue("Invalid Volume "+ unitValue);
         }
 
-        double unitValueInLiters = unitValue * volumeUnit.ratioToLiter;
+        double unitValueInLiters = volumeUnit.toStandard(unitValue);
         return new Volume(unitValueInLiters);
     }
 
