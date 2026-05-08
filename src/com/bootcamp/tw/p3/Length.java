@@ -1,4 +1,5 @@
 package com.bootcamp.tw.p3;
+
 import java.util.Objects;
 
 public class Length {
@@ -9,15 +10,12 @@ public class Length {
     }
 
     static Length create(Double unitValue, LengthUnit lengthUnit) throws InvalidUnitValue {
-        if(unitValue < 0) {
-            throw  new InvalidUnitValue("Negative length Not allowed");
+        if (unitValue < 0) {
+            throw new InvalidUnitValue("Negative length Not allowed");
         }
-
         double unitInStandard = lengthUnit.toStandard(unitValue);
-
         return new Length(unitInStandard);
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -38,7 +36,7 @@ public class Length {
 
     @Override
     public String toString() {
-        return LengthUnit.INCH.fromStandard(this.unitValue)+" in" ;
+        return LengthUnit.INCH.fromStandard(this.unitValue) + " in";
     }
 }
 

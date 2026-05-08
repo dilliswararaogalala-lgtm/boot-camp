@@ -1,6 +1,4 @@
 package com.bootcamp.tw.p3;
-//(°F - 32) × \(\frac{5}{9}\)
-
 import java.util.function.UnaryOperator;
 
 public enum TemperatureUnit {
