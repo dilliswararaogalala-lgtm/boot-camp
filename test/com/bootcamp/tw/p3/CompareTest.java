@@ -2,29 +2,21 @@ package com.bootcamp.tw.p3;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CompareTest {
-    @Test
-    void createFeetClass() {
-        Length feet1 = Length.createFeet(1);
-        Length feet2 = Length.createFeet(1);
-        assertEquals(feet1, feet2);
-    }
-
-    @Test
-    void createInchClass() {
-        Length inch = Length.createInch(1);
-        Length inch2 = Length.createInch(1);
-        assertEquals(inch, inch2);
-    }
-
     @Test
     void compareInchAndInch() {
         Length inch = Length.createInch(12);
         Length inch2 = Length.createInch(12);
         assertTrue(inch.compare(inch2));
+    }
+
+    @Test
+    void compareNotEqualInchAndInch() {
+        Length inch = Length.createInch(12);
+        Length inch2 = Length.createInch(11);
+        assertFalse(inch.compare(inch2));
     }
 
     @Test
@@ -35,11 +27,26 @@ public class CompareTest {
     }
 
     @Test
+    void compareNotEqualFeetAndFeet() {
+        Length feet = Length.createFeet(12);
+        Length feet2 = Length.createFeet(1);
+        assertFalse(feet.compare(feet2));
+    }
+
+    @Test
     void compareFeetAndInch() {
         Length feet = Length.createInch(12);
         Length feet2 = Length.createFeet(1);
         assertTrue(feet.compare(feet2));
     }
+
+    @Test
+    void compareNotEqualFeetAndInch() {
+        Length feet = Length.createInch(12);
+        Length feet2 = Length.createFeet(2);
+        assertFalse(feet.compare(feet2));
+    }
+
     @Test
     void compareFeetAndCm() {
         Length cm = Length.createCm(30);
@@ -47,11 +54,18 @@ public class CompareTest {
         assertTrue(feet.compare(cm));
     }
 
+    @Test
+    void compareNotEqualFeetAndCm() {
+        Length cm = Length.createCm(30);
+        Length feet = Length.createFeet(2);
+        assertFalse(feet.compare(cm));
+    }
+
 
     @Test
-    void compareInchAndCm() {
+    void compareNotEqualInchAndCm() {
         Length cm = Length.createCm(5);
-        Length inch = Length.createInch(2);
-        assertTrue(inch.compare(cm));
+        Length inch = Length.createInch(3);
+        assertFalse(inch.compare(cm));
     }
 }
