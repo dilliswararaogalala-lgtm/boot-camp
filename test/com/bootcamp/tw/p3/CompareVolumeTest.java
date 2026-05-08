@@ -63,4 +63,16 @@ public class CompareVolumeTest {
         Volume fourPointSevenEightLiter = oneGallon.add(oneLiter);
         assertEquals(Volume.create(4.78, VolumeUnit.LITER), fourPointSevenEightLiter);
     }
+
+    @Test
+    void representingOneLiter () throws InvalidUnitValue {
+        Volume oneLiter = Volume.create(1, VolumeUnit.LITER);
+        assertEquals("1.0 l", oneLiter.toString());
+    }
+
+    @Test
+    void representingOneGallon () throws InvalidUnitValue {
+        Volume oneLiter = Volume.create(1, VolumeUnit.GALLON);
+        assertEquals("3.78 l", oneLiter.toString());
+    }
 }

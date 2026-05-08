@@ -5,13 +5,17 @@ public enum VolumeUnit {
     LITER(1.0),
     STANDARD(1.0);
 
-    private final Double ratioToLiter;
+    private final Double ratioToStandard;
 
-    VolumeUnit(Double ratioToLiter) {
-        this.ratioToLiter = ratioToLiter;
+    VolumeUnit(Double ratioToStandard) {
+        this.ratioToStandard = ratioToStandard;
     }
 
     public double toStandard(double unitValue) {
-        return this.ratioToLiter * unitValue;
+        return this.ratioToStandard * unitValue;
+    }
+
+    public Double fromStandard(double unitValue) {
+        return unitValue / this.ratioToStandard;
     }
 }

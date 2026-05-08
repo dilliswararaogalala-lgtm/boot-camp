@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Volume {
 
-    private final double unitValueInLiters;
+    private final double unitValue;
 
-    public Volume(double unitValueInLiters) {
-        this.unitValueInLiters = unitValueInLiters;
+    public Volume(double unitValue) {
+        this.unitValue = unitValue;
     }
 
     public static Volume create(double unitValue, VolumeUnit volumeUnit) throws InvalidUnitValue {
@@ -15,12 +15,12 @@ public class Volume {
             throw new InvalidUnitValue("Invalid Volume "+ unitValue);
         }
 
-        double unitValueInLiters = volumeUnit.toStandard(unitValue);
-        return new Volume(unitValueInLiters);
+        double unitValueInStandard = volumeUnit.toStandard(unitValue);
+        return new Volume(unitValueInStandard);
     }
     
     public Volume add(Volume otherVolume) throws InvalidUnitValue {
-       return create(otherVolume.unitValueInLiters + this.unitValueInLiters, VolumeUnit.STANDARD);
+       return create(otherVolume.unitValue + this.unitValue, VolumeUnit.STANDARD);
     }
 
     @Override
@@ -28,11 +28,16 @@ public class Volume {
         if (o == null || getClass() != o.getClass()) return false;
         Volume volume = (Volume) o;
 
-        return Math.abs(unitValueInLiters - volume.unitValueInLiters) < 1e-2;
+        return Math.abs(unitValue - volume.unitValue) < 1e-2;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(unitValueInLiters);
+        return Objects.hashCode(unitValue);
+    }
+
+    @Override
+    public String toString() {
+        return VolumeUnit.LITER.fromStandard(this.unitValue) + " l";
     }
 }
