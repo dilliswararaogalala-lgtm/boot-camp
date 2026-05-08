@@ -18,12 +18,17 @@ public class Volume {
         double unitValueInLiters = volumeUnit.toStandard(unitValue);
         return new Volume(unitValueInLiters);
     }
+    
+    public Volume add(Volume otherVolume) throws InvalidUnitValue {
+       return create(otherVolume.unitValueInLiters + this.unitValueInLiters, VolumeUnit.STANDARD);
+    }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Volume volume = (Volume) o;
-        return Double.compare(unitValueInLiters, volume.unitValueInLiters) == 0;
+
+        return Math.abs(unitValueInLiters - volume.unitValueInLiters) < 1e-2;
     }
 
     @Override

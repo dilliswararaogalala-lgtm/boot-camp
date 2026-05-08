@@ -54,4 +54,13 @@ public class CompareVolumeTest {
         assertThrows(InvalidUnitValue.class,()-> Volume.create(-1, VolumeUnit.GALLON));
         assertThrows(InvalidUnitValue.class,()-> Volume.create(-1, VolumeUnit.LITER));
     }
+
+
+    @Test
+    void addingGallonAndLiter() throws InvalidUnitValue {
+        Volume oneLiter = Volume.create(1, VolumeUnit.LITER);
+        Volume oneGallon = Volume.create(1, VolumeUnit.GALLON);
+        Volume fourPointSevenEightLiter = oneGallon.add(oneLiter);
+        assertEquals(Volume.create(4.78, VolumeUnit.LITER), fourPointSevenEightLiter);
+    }
 }

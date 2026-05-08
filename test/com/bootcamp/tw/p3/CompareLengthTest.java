@@ -112,5 +112,5 @@ public class CompareLengthTest {
         Length eighteenInches = sixInches.add(oneFeet);
         assertEquals("18.0 in", eighteenInches.toString());
     }
-
+    
 }

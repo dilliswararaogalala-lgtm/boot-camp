@@ -2,7 +2,8 @@ package com.bootcamp.tw.p3;
 
 public enum VolumeUnit {
     GALLON(3.78),
-    LITER(1.0);
+    LITER(1.0),
+    STANDARD(1.0);
 
     private final Double ratioToLiter;
 

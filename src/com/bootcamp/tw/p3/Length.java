@@ -4,8 +4,8 @@ import java.util.Objects;
 public class Length {
     private final Double unitValue;
 
-    private Length(Double unitValueInInch) {
-        this.unitValue = unitValueInInch;
+    private Length(Double unitsInStandard) {
+        this.unitValue = unitsInStandard;
     }
 
     static Length create(Double unitValue, LengthUnit lengthUnit) throws InvalidUnitValue {
@@ -13,8 +13,9 @@ public class Length {
             throw  new InvalidUnitValue("Negative length Not allowed");
         }
 
-        double unitValueInInch = lengthUnit.toStandard(unitValue);
-        return new Length(unitValueInInch);
+        double unitInStandard = lengthUnit.toStandard(unitValue);
+
+        return new Length(unitInStandard);
     }
 
 
