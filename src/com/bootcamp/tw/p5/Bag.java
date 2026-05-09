@@ -13,27 +13,38 @@ public class Bag {
     }
 
     public static Bag createBag(int maxCapacity) throws InvalidCapacityInputException {
-        if(maxCapacity < 0){
+        if (maxCapacity < 0) {
             throw new InvalidCapacityInputException("Invalid Capacity");
         }
         return new Bag(maxCapacity);
     }
 
-    public boolean add(Ball ball) throws UnableToAddBallException, InvalidGreenBallStorageCountException {
-        if (filled >= maxCapacity){
+    public boolean add(Ball ball) throws UnableToAddBallException, InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException {
+        if (filled >= maxCapacity) {
             throw new UnableToAddBallException("Bag is full");
         }
 
-        Integer greenBallCount = ballsMap.getOrDefault(Color.GREEN, 0);
-        boolean isGreen = ball.validate((color) -> color == Color.GREEN );
+        Integer greenBallCount = getBallCount(Color.GREEN);
+        Integer redBallCount = getBallCount(Color.RED);
+        boolean isGreen = ball.validate((color) -> color == Color.GREEN);
+        boolean isRed = ball.validate((color) -> color == Color.RED);
 
-        if (isGreen && greenBallCount >= 3){
-            throw  new InvalidGreenBallStorageCountException("Bag contain 3 green balls Already");
+        if (isGreen && greenBallCount >= 3) {
+            throw new InvalidGreenBallStorageCountException("Bag contain 3 green balls Already");
         }
+
+        if (isRed && greenBallCount * 2 <= redBallCount) {
+            throw new InvalidGreenRedBallRatioException("Invalid green red ball ratio");
+        }
+
 
         filled += 1;
         ball.addTo(ballsMap);
         return true;
+    }
+
+    public Integer getBallCount(Color color) {
+        return ballsMap.getOrDefault(color, 0);
     }
 
 
