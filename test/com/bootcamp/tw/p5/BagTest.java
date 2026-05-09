@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BagTest {
     @Test
-    void shouldAbleToAddBallInBag() throws UnableToAddBallException, InvalidCapacityInputException, InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException {
+    void shouldAbleToAddBallInBag() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
         boolean isAdded = bag.add(new Ball(Color.GREEN));
         assertTrue(isAdded);
     }
 
     @Test
-    void shouldThrowWhenBagIsFull() throws UnableToAddBallException, InvalidCapacityInputException, InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException {
+    void shouldThrowWhenBagIsFull() throws InvalidInputException {
         Bag bag = Bag.createBag(1);
         bag.add(new Ball(Color.GREEN));
         assertThrows(UnableToAddBallException.class, () -> bag.add(new Ball(Color.GREEN)));
@@ -25,14 +25,14 @@ public class BagTest {
     }
 
     @Test
-    void shouldAbleToAddColorBall() throws InvalidCapacityInputException, UnableToAddBallException, InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException {
+    void shouldAbleToAddColorBall() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
         boolean isAdded = bag.add(new Ball(Color.BLUE));
         assertTrue(isAdded);
     }
 
     @Test
-    void shouldAbleToAddGreenBallMoreThan3() throws InvalidCapacityInputException, UnableToAddBallException, InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException {
+    void shouldAbleToAddGreenBallMoreThan3() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
         assertTrue(bag.add(new Ball(Color.GREEN)));
         assertTrue(bag.add(new Ball(Color.GREEN)));
@@ -43,14 +43,14 @@ public class BagTest {
     }
 
     @Test
-    void shouldNotAllowsRedBallToBeMoreThanTwiceOfGreen() throws InvalidCapacityInputException {
+    void shouldNotAllowsRedBallToBeMoreThanTwiceOfGreen() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
         assertThrows(InvalidGreenRedBallRatioException.class, () -> bag.add(new Ball(Color.RED)));
     }
 
 
     @Test
-    void shouldNotAllowsRedBallToBeMoreThanTwiceOfGreenWhenOneGreenPresent() throws InvalidCapacityInputException, UnableToAddBallException, InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException {
+    void shouldNotAllowsRedBallToBeMoreThanTwiceOfGreenWhenOneGreenPresent() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
         bag.add(new Ball(Color.GREEN));
         bag.add(new Ball(Color.RED));
@@ -60,7 +60,7 @@ public class BagTest {
 
 
     @Test
-    void shouldNotAllowsRedBallToBeMoreThanTwiceOfGreenWhenTwoGreenPresent() throws InvalidCapacityInputException, UnableToAddBallException, InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException {
+    void shouldNotAllowsRedBallToBeMoreThanTwiceOfGreenWhenTwoGreenPresent() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
         bag.add(new Ball(Color.GREEN));
         bag.add(new Ball(Color.GREEN));
