@@ -48,12 +48,23 @@ public class ParkingLotSystemTest {
         assertFalse(isLamborghiniParked);
     }
 
-
-
     @Test
     void shouldThrowAnErrorIfTryToParkOnInvalidParkingLotName()  {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
         Car car = new Car(1);
         assertThrows(InvalidParkingLotNameException.class,()->parkingLotSystem.park("P1", car));
     }
+
+    @Test
+    void shouldCreateNewAssistantHowCanViewTheDisplay() throws ParkingLotNameAlreadyExistException, InvalidParkingLotNameException {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        ParkingLot parkingLot = ParkingLot.create(2);
+        parkingLotSystem.addParkingLot("P1", parkingLot);
+        Car car = new Car(1);
+        parkingLotSystem.park("P1", car);
+
+        ParkingLotAssistant parkingLotAssistant = new ParkingLotAssistant(parkingLotSystem);
+        assertEquals( "P1: AVAILABLE\n", parkingLotAssistant.view());
+    }
+
 }
