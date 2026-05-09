@@ -1,6 +1,7 @@
 package com.bootcamp.tw.p5;
 
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class Bag {
 
@@ -34,13 +35,23 @@ public class Bag {
 
     @Override
     public String toString() {
+        int maxLength = getMaxLength(ballsBag.keySet()) + 1;
         StringBuilder summary = new StringBuilder();
         for (Color color : ballsBag.keySet()) {
-            summary.append(padEnd(color.getValue(), 7)).append(": ").append(ballsBag.get(color)).append("\n");
+            summary.append(padEnd(color.getValue(), maxLength)).append(": ").append(ballsBag.get(color)).append("\n");
         }
 
-        summary.append("\n").append(padEnd("Total", 7)).append(": ").append(filled);
+        summary.append("\n").append(padEnd("Total", maxLength)).append(": ").append(filled);
         return summary.toString();
+    }
+
+    private int getMaxLength(Set<Color> colors) {
+        int max = 0;
+        for (Color color : colors){
+            int colorStringLength = color.toString().length();
+            max = Math.max(max, colorStringLength);
+        }
+        return max;
     }
 
     private String padEnd(String value, int length) {
