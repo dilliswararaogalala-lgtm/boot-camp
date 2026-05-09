@@ -18,6 +18,7 @@ public class ParkingLot {
     }
 
     public boolean park(Car car) {
+        if(isFull()) return false;
         return car.park(this.parkingSlots);
     }
 

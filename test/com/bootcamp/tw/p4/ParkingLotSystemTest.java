@@ -35,6 +35,20 @@ public class ParkingLotSystemTest {
         assertTrue(isParkedLotFull);
     }
 
+    @Test
+    void shouldReturnFalseWhenAttendantParkInWhenParkingLotIsFull() throws ParkingLotNameAlreadyExistException, InvalidParkingLotNameException {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        ParkingLot parkingLot = ParkingLot.create(1);
+        Car ferrari = new Car(1);
+        Car lamborghini = new Car(1);
+        parkingLotSystem.addParkingLot("P1", parkingLot);
+        boolean isFerrariParked = parkingLotSystem.park("P1", ferrari);
+        boolean isLamborghiniParked = parkingLotSystem.park("P1", lamborghini);
+        assertTrue(isFerrariParked);
+        assertFalse(isLamborghiniParked);
+    }
+
+
 
     @Test
     void shouldThrowAnErrorIfTryToParkOnInvalidParkingLotName()  {
