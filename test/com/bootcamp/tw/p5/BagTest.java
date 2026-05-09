@@ -9,22 +9,26 @@ public class BagTest {
     @Test
     void shouldAbleToAddBallInBag() throws UnableToAddBallException, InvalidCapacityInputException {
         Bag bag = Bag.createBag(12);
-        boolean isAdded = bag.add(new Ball());
+        boolean isAdded = bag.add(new Ball(Color.RED));
         assertTrue(isAdded);
     }
 
     @Test
     void shouldThrowWhenBagIsFull() throws UnableToAddBallException, InvalidCapacityInputException {
         Bag bag = Bag.createBag(1);
-        bag.add(new Ball());
-        assertThrows(UnableToAddBallException.class, ()-> bag.add(new Ball()));
+        bag.add(new Ball(Color.RED));
+        assertThrows(UnableToAddBallException.class, ()-> bag.add(new Ball(Color.RED)));
     }
 
     @Test
     void shouldThrowWhenWeCreateBagWithNegativeValues()  {
         assertThrows(InvalidCapacityInputException.class, ()-> Bag.createBag(-1));
-
     }
 
-
+    @Test
+    void shouldAbleToAddColorBall() throws InvalidCapacityInputException, UnableToAddBallException {
+        Bag bag = Bag.createBag(12);
+        boolean isAdded = bag.add(new Ball(Color.BLUE));
+        assertTrue(isAdded);
+    }
 }
