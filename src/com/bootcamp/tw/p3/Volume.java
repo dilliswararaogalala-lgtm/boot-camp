@@ -1,13 +1,9 @@
 package com.bootcamp.tw.p3;
 
-import java.util.Objects;
-
-public class Volume {
-
-    private final double unitValue;
+public class Volume extends Measurement {
 
     public Volume(double unitValue) {
-        this.unitValue = unitValue;
+        super(unitValue);
     }
 
     public static Volume create(double unitValue, VolumeUnit volumeUnit) throws InvalidUnitValue {
@@ -26,14 +22,7 @@ public class Volume {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Volume volume = (Volume) o;
-
-        return Math.abs(unitValue - volume.unitValue) < 1e-2;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(unitValue);
+        return super.equals(o);
     }
 
     @Override

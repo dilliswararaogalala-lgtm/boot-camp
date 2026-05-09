@@ -1,12 +1,10 @@
 package com.bootcamp.tw.p3;
 
-import java.util.Objects;
 
-public class Temperature {
-    private final double unitValue;
+public class Temperature extends Measurement {
 
     public Temperature(double unitValue) {
-        this.unitValue = unitValue;
+        super(unitValue);
     }
 
     public static Temperature create(double unitValue, TemperatureUnit unit) {
@@ -18,20 +16,7 @@ public class Temperature {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Temperature that = (Temperature) o;
-
-        return Double.compare(unitValue, that.unitValue) == 0;
+        return super.equals(o);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(unitValue);
-    }
-
-    @Override
-    public String toString() {
-        return "Temperature{" +
-                "unitValue=" + unitValue +
-                '}';
-    }
 }
