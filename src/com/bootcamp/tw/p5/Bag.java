@@ -5,7 +5,8 @@ import java.util.HashMap;
 public class Bag {
 
     private final int maxCapacity;
-    private final HashMap<Color, Integer> ballsMap = new HashMap<>();
+    private final HashMap<Color, Integer> ballsBag = new HashMap<>();
+    private final Validator validator = new Validator();
     private int filled = 0;
 
     private Bag(int maxCapacity) {
@@ -24,41 +25,11 @@ public class Bag {
             throw new UnableToAddBallException("Bag is full");
         }
 
-        validateBallRatios(ball);
+        validator.validateBallRatios(ballsBag, filled, ball);
 
         filled += 1;
-        ball.addTo(ballsMap);
+        ball.addTo(ballsBag);
         return true;
     }
-
-    public void validateBallRatios(Ball ball) throws InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException, InvalidYellowBallRatioException {
-        Integer greenBallCount = getBallCount(Color.GREEN);
-        Integer redBallCount = getBallCount(Color.RED);
-        Integer yellowBallCount = getBallCount(Color.YELLOW);
-        boolean isGreen = isRequiredColor(ball, Color.GREEN);
-        boolean isRed = isRequiredColor(ball, Color.RED);
-        boolean isYellow = isRequiredColor(ball, Color.YELLOW);
-
-        if (isGreen && greenBallCount >= 3) {
-            throw new InvalidGreenBallStorageCountException("Bag contain 3 green balls Already");
-        }
-
-        if (isRed && greenBallCount * 2 <= redBallCount) {
-            throw new InvalidGreenRedBallRatioException("Invalid green red ball ratio");
-        }
-
-        if(isYellow && ((yellowBallCount + 1.0) / (filled + 1) > 0.4)){
-            throw new InvalidYellowBallRatioException("Yellow Balls can not be more than 40% of added balls");
-        }
-    }
-
-    public static boolean isRequiredColor(Ball ball, Color targetedColor) {
-        return ball.validate((color) -> color == targetedColor);
-    }
-
-    public Integer getBallCount(Color color) {
-        return ballsMap.getOrDefault(color, 0);
-    }
-
 
 }
