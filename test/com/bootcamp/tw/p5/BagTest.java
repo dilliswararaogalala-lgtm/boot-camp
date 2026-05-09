@@ -80,6 +80,4 @@ public class BagTest {
         assertThrows(InvalidYellowBallRatioException.class, () -> bag.add(new Ball(Color.YELLOW)));
     }
 
-
-
 }

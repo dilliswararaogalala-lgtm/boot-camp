@@ -24,6 +24,14 @@ public class Bag {
             throw new UnableToAddBallException("Bag is full");
         }
 
+        validateBallRatios(ball);
+
+        filled += 1;
+        ball.addTo(ballsMap);
+        return true;
+    }
+
+    public void validateBallRatios(Ball ball) throws InvalidGreenBallStorageCountException, InvalidGreenRedBallRatioException, InvalidYellowBallRatioException {
         Integer greenBallCount = getBallCount(Color.GREEN);
         Integer redBallCount = getBallCount(Color.RED);
         Integer yellowBallCount = getBallCount(Color.YELLOW);
@@ -42,10 +50,6 @@ public class Bag {
         if(isYellow && ((yellowBallCount + 1.0) / (filled + 1) > 0.4)){
             throw new InvalidYellowBallRatioException("Yellow Balls can not be more than 40% of added balls");
         }
-
-        filled += 1;
-        ball.addTo(ballsMap);
-        return true;
     }
 
     public static boolean isRequiredColor(Ball ball, Color targetedColor) {
