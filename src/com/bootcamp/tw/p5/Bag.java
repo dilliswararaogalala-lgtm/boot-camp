@@ -19,7 +19,7 @@ public class Bag {
         return new Bag(maxCapacity);
     }
 
-    public boolean add(Ball ball) throws UnableToAddBallException {
+    public boolean add(Ball ball) throws UnableToAddBallException, InvalidGreenBallStorageCountException {
         if (filled >= maxCapacity){
             throw new UnableToAddBallException("Bag is full");
         }
@@ -28,8 +28,9 @@ public class Bag {
         boolean isGreen = ball.validate((color) -> color == Color.GREEN );
 
         if (isGreen && greenBallCount >= 3){
-            return false;
+            throw  new InvalidGreenBallStorageCountException("Bag contain 3 green balls Already");
         }
+
         filled += 1;
         ball.addTo(ballsMap);
         return true;
