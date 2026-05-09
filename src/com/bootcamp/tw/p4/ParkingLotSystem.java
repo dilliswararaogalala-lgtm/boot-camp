@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class ParkingLotSystem {
 
     private final HashMap<String, ParkingLot> parkingLots = new HashMap<>();
-    private ParkingLotAssistant agent;
+    private Viewer viewer;
 
     public void addParkingLot(String name, ParkingLot parkingLot) throws ParkingLotNameAlreadyExistException {
         if (isParkingLotExist(name)) {
@@ -25,15 +25,13 @@ public class ParkingLotSystem {
         ParkingLot parkingLot = parkingLots.get(name);
 
         boolean isParked = parkingLot.park(car);
-        updateAgents();
+        updateViewer();
         return isParked;
     }
 
-    private void updateAgents() {
-        String lotsState = getLotsState();
-
-        if (this.agent != null){
-            this.agent.updateStatus(lotsState);
+    private void updateViewer() {
+        if(viewer != null){
+            this.viewer.updateView(new View(parkingLots));
         }
     }
 
@@ -42,20 +40,9 @@ public class ParkingLotSystem {
         return parkingLot.isFull();
     }
 
-    public String getLotsState() {
-        StringBuilder view = new StringBuilder();
-        for (String name : parkingLots.keySet()) {
-            ParkingLot parkingLot = parkingLots.get(name);
 
-            String status = parkingLot.isFull() ? "FULL" : "AVAILABLE";
-            view.append(name).append(": ").append(status).append("\n");
-        }
-
-        return view.toString();
-    }
-
-    public void addNewAssistant(ParkingLotAssistant parkingLotAssistant) {
-        this.agent = parkingLotAssistant;
-        this.updateAgents();
+    public void addViewer(Viewer viewer) {
+        this.viewer = viewer;
+        viewer.updateView(new View(parkingLots));
     }
 }

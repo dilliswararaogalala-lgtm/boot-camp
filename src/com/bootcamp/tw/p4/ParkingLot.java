@@ -25,4 +25,8 @@ public class ParkingLot {
     public boolean isFull() {
         return this.parkingSlots.size() >= size;
     }
+
+    public double percentageCovered() {
+        return  ((double)this.parkingSlots.size() / this.size) * 100;
+    }
 }

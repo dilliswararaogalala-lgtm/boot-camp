@@ -64,13 +64,33 @@ public class ParkingLotSystemTest {
         Car car2 = new Car(2);
         parkingLotSystem.park("P1", car);
 
-        ParkingLotAssistant parkingLotAssistant = new ParkingLotAssistant("");
-        parkingLotSystem.addNewAssistant(parkingLotAssistant);
+        Assistant parkingLotAssistant = new Assistant("");
+        parkingLotSystem.addViewer(parkingLotAssistant);
 
         assertEquals( "P1: AVAILABLE\n", parkingLotAssistant.view());
         parkingLotSystem.park("P1", car2);
         assertTrue(parkingLotSystem.isFull("P1"));
         assertEquals( "P1: FULL\n", parkingLotAssistant.view());
+    }
+
+    @Test
+    void shouldCreateManagerToKnowIfLotIs80PercentFull() throws ParkingLotNameAlreadyExistException, InvalidParkingLotNameException {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        ParkingLot parkingLot = ParkingLot.create(2);
+        parkingLotSystem.addParkingLot("P1", parkingLot);
+
+        Car car = new Car(1);
+        Car car2 = new Car(2);
+        parkingLotSystem.park("P1", car);
+
+        Manager manager = new Manager("P1");
+        parkingLotSystem.addViewer(manager);
+
+        assertTrue(manager.canAllowTrainee());
+        parkingLotSystem.park("P1", car2);
+
+        assertTrue(parkingLotSystem.isFull("P1"));
+        assertFalse(manager.canAllowTrainee());
     }
 
 }
