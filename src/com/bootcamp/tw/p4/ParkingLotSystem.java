@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class ParkingLotSystem {
 
     private final HashMap<String, ParkingLot> parkingLots = new HashMap<>();
+    private ParkingLotAssistant agent;
 
     public void addParkingLot(String name, ParkingLot parkingLot) throws ParkingLotNameAlreadyExistException {
         if (isParkingLotExist(name)) {
@@ -22,7 +23,18 @@ public class ParkingLotSystem {
             throw new InvalidParkingLotNameException("Parking lot is not available");
         }
         ParkingLot parkingLot = parkingLots.get(name);
-        return parkingLot.park(car);
+
+        boolean isParked = parkingLot.park(car);
+        updateAgents();
+        return isParked;
+    }
+
+    private void updateAgents() {
+        String lotsState = getLotsState();
+
+        if (this.agent != null){
+            this.agent.updateStatus(lotsState);
+        }
     }
 
     public boolean isFull(String name) {
@@ -40,5 +52,10 @@ public class ParkingLotSystem {
         }
 
         return view.toString();
+    }
+
+    public void addNewAssistant(ParkingLotAssistant parkingLotAssistant) {
+        this.agent = parkingLotAssistant;
+        this.updateAgents();
     }
 }

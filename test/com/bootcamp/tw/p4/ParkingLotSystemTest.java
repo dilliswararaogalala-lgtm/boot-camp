@@ -61,10 +61,16 @@ public class ParkingLotSystemTest {
         ParkingLot parkingLot = ParkingLot.create(2);
         parkingLotSystem.addParkingLot("P1", parkingLot);
         Car car = new Car(1);
+        Car car2 = new Car(2);
         parkingLotSystem.park("P1", car);
 
-        ParkingLotAssistant parkingLotAssistant = new ParkingLotAssistant(parkingLotSystem);
+        ParkingLotAssistant parkingLotAssistant = new ParkingLotAssistant("");
+        parkingLotSystem.addNewAssistant(parkingLotAssistant);
+
         assertEquals( "P1: AVAILABLE\n", parkingLotAssistant.view());
+        parkingLotSystem.park("P1", car2);
+        assertTrue(parkingLotSystem.isFull("P1"));
+        assertEquals( "P1: FULL\n", parkingLotAssistant.view());
     }
 
 }

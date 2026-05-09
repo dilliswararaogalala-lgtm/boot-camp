@@ -10,7 +10,7 @@ public class ParkingLotTest {
         Car car1 = new Car(1);
         ParkingLot parkingLot = ParkingLot.create(4);
         boolean isParked = parkingLot.park(car1);
-        assertTrue( isParked);
+        assertTrue(isParked);
     }
 
     @Test
@@ -18,7 +18,19 @@ public class ParkingLotTest {
         Car car1 = new Car(1);
         ParkingLot parkingLot = ParkingLot.create(1);
         boolean isParked = parkingLot.park(car1);
-        assertTrue( isParked);
+        assertTrue(isParked);
+        assertTrue(parkingLot.isFull());
+    }
+
+    @Test
+    void shouldTellWhenParkingLotIsFullFor2ParkingSpace() {
+        Car car1 = new Car(1);
+        Car car2 = new Car(2);
+        ParkingLot parkingLot = ParkingLot.create(2);
+        boolean isParked = parkingLot.park(car1);
+        parkingLot.park(car2);
+        assertTrue(isParked);
+
         assertTrue(parkingLot.isFull());
     }
 }

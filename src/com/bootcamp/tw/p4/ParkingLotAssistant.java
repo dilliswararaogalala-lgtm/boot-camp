@@ -1,13 +1,17 @@
 package com.bootcamp.tw.p4;
 
 public class ParkingLotAssistant {
-    private final ParkingLotSystem parkingLotSystem;
+    private String status;
 
-    public ParkingLotAssistant(ParkingLotSystem parkingLotSystem) {
-        this.parkingLotSystem = parkingLotSystem;
+    public ParkingLotAssistant(String status) {
+        this.status = status;
+    }
+
+    public void updateStatus(String status) {
+        this.status = status;
     }
 
     public String view() {
-        return parkingLotSystem.getLotsState();
+        return status;
     }
 }
