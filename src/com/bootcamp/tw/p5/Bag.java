@@ -1,5 +1,6 @@
 package com.bootcamp.tw.p5;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
@@ -7,11 +8,16 @@ public class Bag {
 
     private final int maxCapacity;
     private final LinkedHashMap<Color, Integer> ballsBag = new LinkedHashMap<>();
-    private final Validator validator = new Validator();
+    private Validator validator = new Validator();
     private int filled = 0;
 
     private Bag(int maxCapacity) {
         this.maxCapacity = maxCapacity;
+    }
+
+    public Bag(int maxCapacity, Validator validator) {
+        this.maxCapacity = maxCapacity;
+        this.validator = validator;
     }
 
     public static Bag createBag(int maxCapacity) throws InvalidInputException {
@@ -21,12 +27,17 @@ public class Bag {
         return new Bag(maxCapacity);
     }
 
+    public static Bag createBag(int maxCapacity, ArrayList<Rule> rules) {
+        Validator validator = new Validator(rules);
+        return new Bag(maxCapacity, validator);
+    }
+
     public boolean add(Ball ball) throws InvalidInputException {
         if (filled >= maxCapacity) {
             throw new UnableToAddBallException("Bag is full");
         }
 
-        validator.validateBallRatios(ballsBag, filled, ball);
+        validator.validateRules(ballsBag, ball);
 
         filled += 1;
         ball.addTo(ballsBag);

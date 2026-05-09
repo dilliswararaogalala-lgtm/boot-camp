@@ -2,6 +2,7 @@ package com.bootcamp.tw.p5;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BagTest {
@@ -32,7 +33,7 @@ public class BagTest {
     }
 
     @Test
-    void shouldAbleToAddGreenBallMoreThan3() throws InvalidInputException {
+    void shouldNotAbleToAddGreenBallMoreThan3() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
         assertTrue(bag.add(new Ball(Color.GREEN)));
         assertTrue(bag.add(new Ball(Color.GREEN)));
@@ -88,6 +89,21 @@ public class BagTest {
         assertTrue(bag.add(new Ball(Color.BLUE)));
     }
 
+
+    @Test
+    void shouldBeAbleToChooseCustomRules() throws InvalidInputException {
+        ArrayList<Rule> rules = new ArrayList<>();
+        rules.add(Rule.validateRedGreenRatio);
+        rules.add(Rule.validateYellowBallRatio);
+
+        Bag bag = Bag.createBag(12, rules);
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+    }
+
     @Test
     void getSummaryOfBagAtAnyTime() throws InvalidInputException {
         Bag bag = Bag.createBag(12);
@@ -110,4 +126,5 @@ public class BagTest {
             bag.add(new Ball(color));
         }
     }
+
 }
