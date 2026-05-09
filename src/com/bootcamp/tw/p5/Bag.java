@@ -23,6 +23,13 @@ public class Bag {
         if (filled >= maxCapacity){
             throw new UnableToAddBallException("Bag is full");
         }
+
+        Integer greenBallCount = ballsMap.getOrDefault(Color.GREEN, 0);
+        boolean isGreen = ball.validate((color) -> color == Color.GREEN );
+
+        if (isGreen && greenBallCount >= 3){
+            return false;
+        }
         filled += 1;
         ball.addTo(ballsMap);
         return true;

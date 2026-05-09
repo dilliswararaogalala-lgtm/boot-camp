@@ -1,6 +1,7 @@
 package com.bootcamp.tw.p5;
 
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 public class Ball {
     private final Color color;
@@ -10,7 +11,11 @@ public class Ball {
     }
 
     public void addTo(HashMap<Color, Integer> ballsMap) {
-        Integer count = ballsMap.get(this.color) == null ?   1:ballsMap.get(this.color) + 1;
-        ballsMap.put(this.color, count);
+        Integer previousCount = ballsMap.getOrDefault(this.color, 0) ;
+        ballsMap.put(this.color, previousCount + 1);
+    }
+
+    public boolean validate(Predicate<Color> p) {
+        return p.test(this.color);
     }
 }

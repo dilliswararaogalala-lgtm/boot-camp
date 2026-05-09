@@ -2,8 +2,7 @@ package com.bootcamp.tw.p5;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BagTest {
     @Test
@@ -30,5 +29,16 @@ public class BagTest {
         Bag bag = Bag.createBag(12);
         boolean isAdded = bag.add(new Ball(Color.BLUE));
         assertTrue(isAdded);
+    }
+
+    @Test
+    void shouldAbleToAddGreenBallMoreThan3() throws InvalidCapacityInputException, UnableToAddBallException {
+        Bag bag = Bag.createBag(12);
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+        assertTrue(bag.add(new Ball(Color.GREEN)));
+
+        assertFalse(bag.add(new Ball(Color.GREEN)));
+        assertTrue(bag.add(new Ball(Color.BLUE)));
     }
 }
