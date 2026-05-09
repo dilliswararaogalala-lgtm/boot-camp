@@ -71,4 +71,15 @@ public class BagTest {
         assertThrows(InvalidGreenRedBallRatioException.class, () -> bag.add(new Ball(Color.RED)));
     }
 
+    @Test
+    void yellowBallShouldNotBeMoreThan40PercentOfTotalAddedBalls() throws InvalidInputException {
+        Bag bag = Bag.createBag(12);
+        bag.add(new Ball(Color.GREEN));
+        bag.add(new Ball(Color.GREEN));
+        bag.add(new Ball(Color.YELLOW));
+        assertThrows(InvalidYellowBallRatioException.class, () -> bag.add(new Ball(Color.YELLOW)));
+    }
+
+
+
 }

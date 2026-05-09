@@ -26,8 +26,10 @@ public class Bag {
 
         Integer greenBallCount = getBallCount(Color.GREEN);
         Integer redBallCount = getBallCount(Color.RED);
+        Integer yellowBallCount = getBallCount(Color.YELLOW);
         boolean isGreen = isRequiredColor(ball, Color.GREEN);
         boolean isRed = isRequiredColor(ball, Color.RED);
+        boolean isYellow = isRequiredColor(ball, Color.YELLOW);
 
         if (isGreen && greenBallCount >= 3) {
             throw new InvalidGreenBallStorageCountException("Bag contain 3 green balls Already");
@@ -35,6 +37,10 @@ public class Bag {
 
         if (isRed && greenBallCount * 2 <= redBallCount) {
             throw new InvalidGreenRedBallRatioException("Invalid green red ball ratio");
+        }
+
+        if(isYellow && ((yellowBallCount + 1.0) / (filled + 1) > 0.4)){
+            throw new InvalidYellowBallRatioException("Yellow Balls can not be more than 40% of added balls");
         }
 
         filled += 1;
