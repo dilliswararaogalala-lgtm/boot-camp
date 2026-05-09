@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ParkingTest {
+public class ParkingLotTest {
     @Test
     void canParkACar() {
         Car car1 = new Car(1);
@@ -17,7 +17,6 @@ public class ParkingTest {
     void shouldTellWhenParkingLotIsFull() {
         Car car1 = new Car(1);
         ParkingLot parkingLot = ParkingLot.create(1);
-
         boolean isParked = parkingLot.park(car1);
         assertTrue( isParked);
         assertTrue(parkingLot.isFull());
