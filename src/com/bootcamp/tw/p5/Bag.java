@@ -8,26 +8,28 @@ public class Bag {
 
     private final int maxCapacity;
     private final LinkedHashMap<Color, Integer> ballsBag = new LinkedHashMap<>();
-    private Validator validator = new Validator();
+    private final Validator validator;
     private int filled = 0;
-
-    private Bag(int maxCapacity) {
-        this.maxCapacity = maxCapacity;
-    }
 
     public Bag(int maxCapacity, Validator validator) {
         this.maxCapacity = maxCapacity;
         this.validator = validator;
     }
 
+
     public static Bag createBag(int maxCapacity) throws InvalidInputException {
+        ArrayList<Rule> rules = new ArrayList<>();
+        rules.add(Rule.validateGreenBallRatio);
+        rules.add(Rule.validateRedGreenRatio);
+        rules.add(Rule.validateYellowBallRatio);
+
+        return createBagWithRules(maxCapacity, rules);
+    }
+
+    public static Bag createBagWithRules(int maxCapacity, ArrayList<Rule> rules) throws InvalidCapacityInputException {
         if (maxCapacity < 0) {
             throw new InvalidCapacityInputException("Invalid Capacity");
         }
-        return new Bag(maxCapacity);
-    }
-
-    public static Bag createBag(int maxCapacity, ArrayList<Rule> rules) {
         Validator validator = new Validator(rules);
         return new Bag(maxCapacity, validator);
     }
@@ -58,7 +60,7 @@ public class Bag {
 
     private int getMaxLength(Set<Color> colors) {
         int max = 0;
-        for (Color color : colors){
+        for (Color color : colors) {
             int colorStringLength = color.toString().length();
             max = Math.max(max, colorStringLength);
         }
