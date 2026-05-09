@@ -41,4 +41,5 @@ public class Validator {
     private int getBallCount(HashMap<Color, Integer> ballsBag, Color color) {
         return ballsBag.getOrDefault(color, 0);
     }
+
 }

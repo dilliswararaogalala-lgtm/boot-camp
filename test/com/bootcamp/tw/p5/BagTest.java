@@ -80,4 +80,34 @@ public class BagTest {
         assertThrows(InvalidYellowBallRatioException.class, () -> bag.add(new Ball(Color.YELLOW)));
     }
 
+    @Test
+    void shouldAbleToAddAnyNoOfBlueBalls() throws InvalidInputException {
+        Bag bag = Bag.createBag(3);
+        assertTrue(bag.add(new Ball(Color.BLUE)));
+        assertTrue(bag.add(new Ball(Color.BLUE)));
+        assertTrue(bag.add(new Ball(Color.BLUE)));
+    }
+
+    @Test
+    void getSummaryOfBagAtAnyTime() throws InvalidInputException {
+        Bag bag = Bag.createBag(12);
+        addBallsToBag(bag, 4, Color.BLUE);
+        addBallsToBag(bag, 2, Color.GREEN);
+        addBallsToBag(bag, 4, Color.RED);
+        addBallsToBag(bag, 2, Color.YELLOW);
+        assertEquals("""
+                Blue   : 4
+                Green  : 2
+                Red    : 4
+                Yellow : 2
+                
+                Total  : 12""", bag.toString());
+
+    }
+
+    private void addBallsToBag(Bag bag, int ballsCount, Color color) throws InvalidInputException {
+        for(int i = 0; i < ballsCount; i++){
+            bag.add(new Ball(color));
+        }
+    }
 }

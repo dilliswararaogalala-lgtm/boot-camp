@@ -1,11 +1,11 @@
 package com.bootcamp.tw.p5;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Bag {
 
     private final int maxCapacity;
-    private final HashMap<Color, Integer> ballsBag = new HashMap<>();
+    private final LinkedHashMap<Color, Integer> ballsBag = new LinkedHashMap<>();
     private final Validator validator = new Validator();
     private int filled = 0;
 
@@ -32,4 +32,18 @@ public class Bag {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder summary = new StringBuilder();
+        for (Color color : ballsBag.keySet()) {
+            summary.append(padEnd(color.getValue(), 7)).append(": ").append(ballsBag.get(color)).append("\n");
+        }
+
+        summary.append("\n").append(padEnd("Total", 7)).append(": ").append(filled);
+        return summary.toString();
+    }
+
+    private String padEnd(String value, int length) {
+        return value + " ".repeat(length - value.length());
+    }
 }
