@@ -10,7 +10,10 @@ public class Bag {
         this.maxCapacity = maxCapacity;
     }
 
-    public static Bag createBag(int maxCapacity) {
+    public static Bag createBag(int maxCapacity) throws InvalidCapacityInputException {
+        if(maxCapacity < 0){
+            throw new InvalidCapacityInputException("Invalid Capacity");
+        }
         return new Bag(maxCapacity);
     }
 
