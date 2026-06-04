@@ -96,7 +96,7 @@ public class BagTest {
         rules.add(Rule.validateRedGreenRatio);
         rules.add(Rule.validateYellowBallRatio);
 
-        Bag bag = Bag.createBag(12, rules);
+        Bag bag = Bag.createBagWithRules(12, rules);
         assertTrue(bag.add(new Ball(Color.GREEN)));
         assertTrue(bag.add(new Ball(Color.GREEN)));
         assertTrue(bag.add(new Ball(Color.GREEN)));

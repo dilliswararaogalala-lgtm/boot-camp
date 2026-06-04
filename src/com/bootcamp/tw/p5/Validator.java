@@ -9,13 +9,7 @@ public class Validator {
     public Validator(ArrayList<Rule> rules) {
         this.rules = rules;
     }
-    public Validator() {
-        ArrayList<Rule> rules = new ArrayList<>();
-        rules.add(Rule.validateGreenBallRatio);
-        rules.add(Rule.validateRedGreenRatio);
-        rules.add(Rule.validateYellowBallRatio);
-        this.rules = rules;
-    }
+
 
     public void validateRules(HashMap<Color, Integer> ballsBag, Ball ball) throws InvalidInputException {
         for (Rule rule : rules){
